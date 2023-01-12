@@ -11,19 +11,23 @@ app.use(express.json())
 
 mongoose.connect(process.env.MONGODB_URI)
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, "/view/index.html"))
-})
-
-app.get('/test', (req, res) => {
-  res.send('<h1>Teste...</h1>')
-})
-
 app.get('/movies', getAllMovies)
 
 app.post('/movies', createMovie)
 
-const PORT = process.env.PORT || 3000
+app.post('/movies', createMovie)
+
+app.get('/assets/:fileDir', (req, res) => {
+  console.warn(`request for ${req.params.fileDir}`)
+  res.sendFile(path.join(__dirname, `/view/assets/${req.params.fileDir}`))
+})
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, "/view/index.html"))
+})
+
+
+const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`)
 })
