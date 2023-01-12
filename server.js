@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 const app = express()
 app.use(express.json())
+app.use(express.static("public"))
 
 mongoose.connect(process.env.MONGODB_URI)
 
@@ -16,11 +17,6 @@ app.get('/movies', getAllMovies)
 app.post('/movies', createMovie)
 
 app.post('/movies', createMovie)
-
-app.get('/assets/:fileDir', (req, res) => {
-  console.warn(`request for ${req.params.fileDir}`)
-  res.sendFile(path.join(__dirname, `/view/assets/${req.params.fileDir}`))
-})
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "/view/index.html"))
