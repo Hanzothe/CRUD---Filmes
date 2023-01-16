@@ -1,28 +1,32 @@
 require('dotenv').config()
-const { getAllMovies, createMovie } = require('./controllers/controller')
 
+const { createMovie, deleteMovie, getAllMovies, getMovieById, updateMovie } = require('./controllers/movieController')
+
+// Configurations
 const express = require('express')
+require('express-async-errors');
 const path = require('path')
 const mongoose = require('mongoose');
-
+const errorHandler = require('./middlewares/errorHandler');
 
 const app = express()
 app.use(express.json())
-app.use(express.static("public"))
 
 mongoose.connect(process.env.MONGODB_URI)
 
-app.get('/movies', getAllMovies)
+// Routes
+app.get('/', (req, res, next) => { res.sendFile(path.join(__dirname, "/view/index.html")) })
+app.use(express.static("public"))
 
-app.post('/movies', createMovie)
+app.get('/movies', getAllMovies);
+app.get('/movies/:id', getMovieById);
+app.post('/movies', createMovie);
+app.delete('/movies/:id', deleteMovie);
+app.put('/movies/:id', updateMovie);
 
-app.post('/movies', createMovie)
+app.use(errorHandler)
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, "/view/index.html"))
-})
-
-
+// Make app listen
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`)
