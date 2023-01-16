@@ -7,7 +7,10 @@ const menu = document.querySelector(".menu");
 const addButton = document.querySelector(".add-button");
 const addMenu = document.querySelector(".add-menu");
 const buttonOption = document.querySelectorAll(".btnOpt");
-const form = document.getElementById("formulario-filme");
+const form = document.querySelector("#formulario-filme");
+const linkAbrirModal = document.getElementById("abrir-modal");
+const fecharModal = document.getElementById("fechar-modal");
+const modal = document.getElementById("filme-banner");
 
 burguer.addEventListener("click", () => {
   upbar.classList.toggle("upcross");
@@ -54,18 +57,27 @@ const filmes = [
   },
 ];
 
-form.addEventListener("submit", (event) => {
+// form.addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   const titulo = document.getElementById("titulo").value;
+//   const lançamento = document.getElementById("lancamento").value;
+//   const elenco = document.getElementById("elenco").value;
+//   const gênero = document.getElementById("genero").value;
+//   const novoFilme = {
+//     titulo: titulo,
+//     lançamento: lançamento,
+//     elenco: elenco,
+//     gênero: gênero,
+//   };
+//   filmes.push(novoFilme);
+//   console.log(filmes);
+// });
+
+linkAbrirModal.addEventListener("click", function (event) {
   event.preventDefault();
-  const titulo = document.getElementById("titulo").value;
-  const lançamento = document.getElementById("lancamento").value;
-  const elenco = document.getElementById("elenco").value;
-  const gênero = document.getElementById("genero").value;
-  const novoFilme = {
-    titulo: titulo,
-    lançamento: lançamento,
-    elenco: elenco,
-    gênero: gênero,
-  };
-  filmes.push(novoFilme);
-  console.log(filmes);
+  modal.classList.add("modal-aberto");
+});
+
+fecharModal.addEventListener("click", function () {
+  modal.classList.remove("modal-aberto");
 });

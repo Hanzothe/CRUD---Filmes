@@ -272,6 +272,54 @@
     cursor: pointer;
   }
 
+  /* Modal */
+
+  #filme-banner {
+    background-color: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    top: 10%;
+    height: 60%;
+    width: 80%;
+    left: 10%;
+    border-radius: 10px;
+  }
+
+  #titulo {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  #lancamento {
+    font-size: 18px;
+    font-style: italic;
+  }
+
+  #elenco,
+  #genero {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .modal {
+    display: none;
+  }
+
+  .modal-aberto {
+    display: block;
+  }
+
+  .fechar-modal {
+    position: relative;
+    top: -2%;
+    right: -46%;
+    font-size: 30px;
+    font-weight: 300;
+    cursor: pointer;
+  }
+
   footer {
     position: fixed;
     bottom: 0;
