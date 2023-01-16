@@ -14,10 +14,11 @@ app.use(express.json())
 
 mongoose.connect(process.env.MONGODB_URI)
 
-// Routes
-app.get('/', (req, res, next) => { res.sendFile(path.join(__dirname, "/view/index.html")) })
+// Static Routes
 app.use(express.static("public"))
+app.use(express.static("view"))
 
+// API routes
 app.get('/movies', getAllMovies);
 app.get('/movies/:id', getMovieById);
 app.post('/movies', createMovie);
