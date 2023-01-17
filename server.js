@@ -5,12 +5,17 @@ const { createMovie, deleteMovie, getAllMovies, getMovieById, updateMovie } = re
 // Configurations
 const express = require('express')
 require('express-async-errors');
-const path = require('path')
 const mongoose = require('mongoose');
 const errorHandler = require('./middlewares/errorHandler');
 
+var cors = require('cors')
 const app = express()
 app.use(express.json())
+app.use(cors())
+/*var corsOptions = {
+  origin: 'http://example.com',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}*/
 
 mongoose.connect(process.env.MONGODB_URI)
 

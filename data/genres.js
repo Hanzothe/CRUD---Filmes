@@ -6,7 +6,8 @@ const GENRES = [
   'Romance',
   'Drama',
   'Comédia',
-  'Ficção Científica'
+  'Ficção científica',
+  'Mistério'
 ] 
 
 module.exports = { GENRES } 
