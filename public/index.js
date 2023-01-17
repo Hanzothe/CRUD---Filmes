@@ -9,6 +9,18 @@ const addMenu = document.querySelector(".add-menu");
 const buttonOption = document.querySelectorAll(".btnOpt");
 const form = document.getElementById("formulario-filme");
 
+var filmes = [];
+
+window.addEventListener("load", () => {
+  const URL = 'http://localhost:8080/movies'
+  axios.get(URL)
+    .then(response => {
+      filmes = response.data;
+      console.log(`GET filmes`, filmes);
+    })
+    .catch(error => console.error(error));
+})
+
 burguer.addEventListener("click", () => {
   upbar.classList.toggle("upcross");
   middlebar.classList.toggle("middlecross");
@@ -33,27 +45,6 @@ document.addEventListener("click", function (event) {
   }
 });
 
-const filmes = [
-  {
-    titulo: "Thor: Amor e o Trovão",
-    lançamento: "2020",
-    elenco: "Chris Hemsworth, Tessa Thompson, Natalie Portman, Christian Bale",
-    gênero: "Ação",
-  },
-  {
-    titulo: "Encanto",
-    lançamento: "2021",
-    elenco: "Emily Blunt, Lin-Manuel Miranda, John Krasinski, Emily Mortimer",
-    gênero: "Comédia",
-  },
-  {
-    titulo: "Avatar: O Caminho da Água",
-    lançamento: "2022",
-    elenco: "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
-    gênero: "Ficção científica",
-  },
-];
-
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const titulo = document.getElementById("titulo").value;
@@ -62,10 +53,17 @@ form.addEventListener("submit", (event) => {
   const gênero = document.getElementById("genero").value;
   const novoFilme = {
     titulo: titulo,
-    lançamento: lançamento,
-    elenco: elenco,
-    gênero: gênero,
+    release: lançamento,
+    cast: elenco,
+    genre: gênero,
   };
-  filmes.push(novoFilme);
-  console.log(filmes);
+
+  const URL = 'http://localhost:8080/movies'
+  axios.post(URL, novoFilme)
+    .then(response => { 
+      const addedMovie = response.data;
+      console.log(`POST: user is added`, addedMovie);
+      filmes.push(addedMovie);
+    })
+    .catch(error => console.error(error));
 });
