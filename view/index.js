@@ -15,7 +15,7 @@ const modal = document.getElementById("filme-banner");
 var filmes = [];
 
 window.addEventListener("load", () => {
-  const URL = 'http://localhost:8080/movies'
+  const URL = 'https://crudfilmes.fly.dev/movies'
   axios.get(URL)
     .then(response => {
       filmes = response.data;
@@ -61,7 +61,7 @@ form.addEventListener("submit", (event) => {
     genre: gênero,
   };
 
-  const URL = 'http://localhost:8080/movies'
+  const URL = 'https://crudfilmes.fly.dev/movies'
   axios.post(URL, novoFilme)
     .then(response => { 
       const addedMovie = response.data;
