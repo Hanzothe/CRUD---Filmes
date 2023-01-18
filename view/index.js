@@ -15,7 +15,7 @@ const modal = document.getElementById("filme-banner");
 var filmes = [];
 
 window.addEventListener("load", () => {
-  const URL = 'https://crudfilmes2023.onrender.com/'
+  const URL = 'https://crudfilmes2023.onrender.com/movies'
   axios.get(URL)
     .then(response => {
       filmes = response.data;
@@ -61,7 +61,7 @@ form.addEventListener("submit", (event) => {
     genre: gênero,
   };
 
-  const URL = 'https://crudfilmes2023.onrender.com/'
+  const URL = 'https://crudfilmes2023.onrender.com/movies'
   axios.post(URL, novoFilme)
     .then(response => { 
       const addedMovie = response.data;
