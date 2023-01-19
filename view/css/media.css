@@ -125,6 +125,7 @@
     overflow-x: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    display: flex;
   }
   .gallery::-webkit-scrollbar {
     display: none;
@@ -142,6 +143,10 @@
   }
   .item {
     flex-shrink: 0;
+    background-color: white;
+    width: 120px;
+    height: 150px;
+    border-radius: 14px;
   }
 
   .add-button {
@@ -155,11 +160,21 @@
     background-color: #9093dc;
     color: #ffffff;
     font-size: 60px;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     line-height: 50px;
     text-align: center;
     transition: background-color 0.3s ease;
     box-shadow: 0px 0px 6px 3px rgb(255 255 255 / 45%);
     z-index: 999;
+  }
+
+  button:focus {
+    outline: none;
+  }
+  .add-button text {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
   }
 
   .add-button:active {
